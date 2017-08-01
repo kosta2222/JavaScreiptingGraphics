@@ -23,31 +23,12 @@ import javax.swing.JPanel;
  * @author papa
  */
 public class TestSapr {
- 
-
+ static int [] xPoints;  
+ static int [] yPoints;
+ static int n;
 public static class MySapr extends JFrame{
-	static int [] xPoints;  
-	static int [] yPoints;
-	static int n;
+ 
 	public static class Ris extends JPanel{
-
-        public static void setxPoints(int[] axPoints) {
-            xPoints = axPoints;
-        }
-
-        public static void setyPoints(int[] ayPoints) {
-            yPoints = ayPoints;
-        }
-	
-        public Ris() {
-                     
-        }
-
-        
-	private static int [] xPoints;  
-	private static int [] yPoints;
-	static int n;
-
 	public void paint(Graphics g){
 Color c =new Color (0,0,255);
             g.setColor(c);
@@ -57,31 +38,13 @@ g.drawPolyline(xPoints,yPoints,n);
 
 	}
 	}
-
         public MySapr() {
-
             setLayout(new FlowLayout());
             add(new Ris());
         }
-        
-	
-    
-	public  void doDrawPolyLine(int[] x,int[] y){
-		xPoints=x;
-		yPoints=y;
-		n=xPoints.length;
-	MySapr a=new MySapr();
-		a.setVisible(true);
-		a.setSize(700,700);
-		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-	}
-
-    /**
-     * @param args the command line arguments
-     */
+  
     public static void main(String[] args) {
         // TODO code application logic here
-		
         try
         {
             ScriptEngine engine =
@@ -98,15 +61,8 @@ g.drawPolyline(xPoints,yPoints,n);
                     //System.out.println(s);
                     if(!s.matches("#include [a-z]+")){
                         System.out.println(engine.eval(s));
-
                     }
-
-
-
-
                 }
-
-
         }
         catch(IOException ioEx)
         {
@@ -116,8 +72,18 @@ g.drawPolyline(xPoints,yPoints,n);
         {
             scrEx.printStackTrace();
         }
-        
-    }
+    }      
+}
+public  void doDrawPolyLine(int[] x,int[] y){
+		xPoints=x;
+		yPoints=y;
+		n=xPoints.length;
+                MySapr a=new MySapr();
+		a.setVisible(true);
+		a.setSize(700,700);
+		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+	}
+    
     
 }
-}
+
